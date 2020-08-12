@@ -18,9 +18,12 @@ package io.korti.sleepwalk.common.core;
 
 import io.korti.sleepwalk.Sleepwalk;
 import io.korti.sleepwalk.common.potion.EffectSleepwalk;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.*;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -47,31 +50,67 @@ public final class SleepwalkPotions {
             final IForgeRegistry<Potion> potionRegistry = event.getRegistry();
 
             final int tickSecondOffset = 20 * 60;
-            potionRegistry.register(new Potion("sleepwalk",
+
+            final Potion potionSleepwalk;
+            final Potion potionStrongSleepwalk;
+            final Potion potionStrongestSleepwalk;
+            final Potion potionStopSleepwalk;
+
+            potionRegistry.register(potionSleepwalk = new Potion("sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 5, 0, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "sleepwalk"));
-            potionRegistry.register(new Potion("strong_sleepwalk",
+            potionRegistry.register(potionStrongSleepwalk = new Potion("strong_sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 5, 1, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "strong_sleepwalk"));
-            potionRegistry.register(new Potion("strongest_sleepwalk",
+            potionRegistry.register(potionStrongestSleepwalk = new Potion("strongest_sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 5, 2, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "strongest_sleepwalk"));
-            potionRegistry.register(new Potion("stop_sleepwalk",
+            potionRegistry.register(potionStopSleepwalk = new Potion("stop_sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 5, 3, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "stop_sleepwalk"));
 
-            potionRegistry.register(new Potion("longer_sleepwalk",
+            final Potion potionLongerSleepwalk;
+            final Potion potionLongerStrongSleepwalk;
+            final Potion potionLongerStrongestSleepwalk;
+            final Potion potionLongerStopSleepwalk;
+
+            potionRegistry.register(potionLongerSleepwalk = new Potion("longer_sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 10, 0, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "longer_sleepwalk"));
-            potionRegistry.register(new Potion("longer_strong_sleepwalk",
+            potionRegistry.register(potionLongerStrongSleepwalk = new Potion("longer_strong_sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 10, 1, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "longer_strong_sleepwalk"));
-            potionRegistry.register(new Potion("longer_strongest_sleepwalk",
+            potionRegistry.register(potionLongerStrongestSleepwalk = new Potion("longer_strongest_sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 10, 2, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "longer_strongest_sleepwalk"));
-            potionRegistry.register(new Potion("longer_stop_sleepwalk",
+            potionRegistry.register(potionLongerStopSleepwalk = new Potion("longer_stop_sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 10, 3, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "longer_stop_sleepwalk"));
+
+            addBrewingRecipe(Items.PHANTOM_MEMBRANE, Potions.AWKWARD, potionSleepwalk);
+            addBrewingRecipe(Items.GLOWSTONE_DUST, potionSleepwalk, potionStrongSleepwalk);
+            addBrewingRecipe(Items.GLOWSTONE_DUST, potionStrongSleepwalk, potionStrongestSleepwalk);
+            addBrewingRecipe(Items.PHANTOM_MEMBRANE, potionStrongestSleepwalk, potionStopSleepwalk);
+
+            addBrewingRecipe(Items.REDSTONE, potionSleepwalk, potionLongerSleepwalk);
+            addBrewingRecipe(Items.REDSTONE, potionStrongSleepwalk, potionLongerStrongSleepwalk);
+            addBrewingRecipe(Items.REDSTONE, potionStrongestSleepwalk, potionLongerStrongestSleepwalk);
+            addBrewingRecipe(Items.REDSTONE, potionStopSleepwalk, potionLongerStopSleepwalk);
+
+            addBrewingRecipe(Items.GLOWSTONE_DUST, potionLongerSleepwalk, potionLongerStrongSleepwalk);
+            addBrewingRecipe(Items.GLOWSTONE_DUST, potionLongerStrongSleepwalk, potionLongerStrongestSleepwalk);
+            addBrewingRecipe(Items.PHANTOM_MEMBRANE, potionLongerStrongestSleepwalk, potionLongerStopSleepwalk);
+        }
+
+        private static void addBrewingRecipe(Item itemInput, Potion potionInput, Potion potionOutput) {
+            final Ingredient input = Ingredient.fromItems(itemInput);
+            final ItemStack potionInputStack = new ItemStack(Items.POTION);
+            final Ingredient potionBase = Ingredient
+                    .fromStacks(PotionUtils.addPotionToItemStack(potionInputStack, potionInput));
+
+            BrewingRecipeRegistry.addRecipe(
+                    potionBase, input, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), potionOutput)
+            );
         }
     }
 }

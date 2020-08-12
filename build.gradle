@@ -88,8 +88,17 @@ minecraft {
     }
 }
 
+repositories {
+    maven {
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.1-32.0.108'
+
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.1:7.0.1.10")
 }
 
 processResources {
