@@ -23,9 +23,9 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraft.stats.Stats;
 
-public class PotionSleepwalk extends Effect {
+public class EffectSleepwalk extends Effect {
 
-    public PotionSleepwalk() {
+    public EffectSleepwalk() {
         super(EffectType.BENEFICIAL, 0x23383f);
     }
 
@@ -47,7 +47,7 @@ public class PotionSleepwalk extends Effect {
                 return duration % 60 == 0;
             case 2:
                 return duration % 40 == 0;
-            case 4:
+            case 3:
                 return duration % 20 == 0;
             default:
                 return false;
