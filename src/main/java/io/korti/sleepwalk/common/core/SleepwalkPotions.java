@@ -18,6 +18,7 @@ package io.korti.sleepwalk.common.core;
 
 import io.korti.sleepwalk.Sleepwalk;
 import io.korti.sleepwalk.common.potion.EffectSleepwalk;
+import io.korti.sleepwalk.common.potion.InstantEffectSleep;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -35,6 +36,9 @@ public final class SleepwalkPotions {
     @ObjectHolder(Sleepwalk.MOD_ID + ":sleepwalk")
     public static EffectSleepwalk effectSleepwalk;
 
+    @ObjectHolder(Sleepwalk.MOD_ID + ":sleep")
+    public static InstantEffectSleep instantEffectSleep;
+
     @Mod.EventBusSubscriber(modid = Sleepwalk.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class Registration {
 
@@ -43,6 +47,7 @@ public final class SleepwalkPotions {
             final IForgeRegistry<Effect> effectRegistry = event.getRegistry();
 
             effectRegistry.register(new EffectSleepwalk().setRegistryName(Sleepwalk.MOD_ID, "sleepwalk"));
+            effectRegistry.register(new InstantEffectSleep().setRegistryName(Sleepwalk.MOD_ID, "sleep"));
         }
 
         @SubscribeEvent
@@ -86,6 +91,20 @@ public final class SleepwalkPotions {
             potionRegistry.register(potionLongerStopSleepwalk = new Potion("longer_stop_sleepwalk",
                     new EffectInstance(effectSleepwalk, tickSecondOffset * 10, 3, false, false)
             ).setRegistryName(Sleepwalk.MOD_ID, "longer_stop_sleepwalk"));
+
+            final Potion potionSleep;
+            final Potion potionStrongSleep;
+            final Potion potionStrongestSleep;
+
+            potionRegistry.register(potionSleep = new Potion("sleep",
+                    new EffectInstance(instantEffectSleep, 1)
+            ).setRegistryName(Sleepwalk.MOD_ID, "sleep"));
+            potionRegistry.register(potionStrongSleep = new Potion("strong_sleep",
+                    new EffectInstance(instantEffectSleep, 1, 1)
+            ).setRegistryName(Sleepwalk.MOD_ID, "strong_sleep"));
+            potionRegistry.register(potionStrongestSleep = new Potion("strongest_sleep",
+                    new EffectInstance(instantEffectSleep, 1, 2)
+            ).setRegistryName(Sleepwalk.MOD_ID, "strongest_sleep"));
 
             addBrewingRecipe(Items.PHANTOM_MEMBRANE, Potions.AWKWARD, potionSleepwalk);
             addBrewingRecipe(Items.GLOWSTONE_DUST, potionSleepwalk, potionStrongSleepwalk);

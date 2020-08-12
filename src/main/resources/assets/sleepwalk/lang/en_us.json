@@ -1,6 +1,7 @@
 {
   "_comment": "Effects",
   "effect.sleepwalk.sleepwalk": "Sleepwalk",
+  "effect.sleepwalk.sleep": "Sleep",
 
   "_comment": "Potions",
   "item.minecraft.potion.effect.sleepwalk": "Potion of Sleepwalk",
@@ -27,6 +28,15 @@
   "item.minecraft.lingering_potion.effect.longer_strong_sleepwalk": "Lingering Potion of Sleepwalk",
   "item.minecraft.lingering_potion.effect.longer_strongest_sleepwalk": "Lingering Potion of Sleepwalk",
   "item.minecraft.lingering_potion.effect.longer_stop_sleepwalk": "Lingering Potion of Sleepwalk",
+  "item.minecraft.potion.effect.sleep": "Potion of Sleep",
+  "item.minecraft.potion.effect.strong_sleep": "Potion of Sleep",
+  "item.minecraft.potion.effect.strongest_sleep": "Potion of Sleep",
+  "item.minecraft.splash_potion.effect.sleep": "Splash Potion of Sleep",
+  "item.minecraft.splash_potion.effect.strong_sleep": "Splash Potion of Sleep",
+  "item.minecraft.splash_potion.effect.strongest_sleep": "Splash Potion of Sleep",
+  "item.minecraft.lingering_potion.effect.sleep": "Lingering Potion of Sleep",
+  "item.minecraft.lingering_potion.effect.strong_sleep": "Lingering Potion of Sleep",
+  "item.minecraft.lingering_potion.effect.strongest_sleep": "Lingering Potion of Sleep",
 
   "_comment": "Arrows",
   "item.minecraft.tipped_arrow.effect.sleepwalk": "Arrow of Sleepwalk",
@@ -36,5 +46,8 @@
   "item.minecraft.tipped_arrow.effect.longer_sleepwalk": "Arrow of Sleepwalk",
   "item.minecraft.tipped_arrow.effect.longer_strong_sleepwalk": "Arrow of Sleepwalk",
   "item.minecraft.tipped_arrow.effect.longer_strongest_sleepwalk": "Arrow of Sleepwalk",
-  "item.minecraft.tipped_arrow.effect.longer_stop_sleepwalk": "Arrow of Sleepwalk"
+  "item.minecraft.tipped_arrow.effect.longer_stop_sleepwalk": "Arrow of Sleepwalk",
+  "item.minecraft.tipped_arrow.effect.sleep": "Arrow of Sleep",
+  "item.minecraft.tipped_arrow.effect.strong_sleep": "Arrow of Sleep",
+  "item.minecraft.tipped_arrow.effect.strongest_sleep": "Arrow of Sleep"
 }
