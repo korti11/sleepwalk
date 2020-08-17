@@ -1,0 +1,34 @@
+{
+  "type": "sleepwalk:extra_loot",
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "THIS",
+      "predicate": {
+        "type": "minecraft:phantom"
+      }
+    }
+  ],
+  "drop": "sleepwalk:phantom_scale",
+  "rolls": 1,
+  "functions": [
+    {
+      "function": "minecraft:set_count",
+      "count": {
+        "min": 0.0,
+        "max": 1.0,
+        "type": "minecraft:uniform"
+      }
+    },
+    {
+      "function": "minecraft:looting_enchant",
+      "count": {
+        "min": 0.0,
+        "max": 1.0
+      }
+    }
+  ]
+}

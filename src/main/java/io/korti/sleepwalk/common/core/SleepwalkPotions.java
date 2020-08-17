@@ -106,6 +106,7 @@ public final class SleepwalkPotions {
                     new EffectInstance(instantEffectSleep, 1, 2)
             ).setRegistryName(Sleepwalk.MOD_ID, "strongest_sleep"));
 
+            // TODO: Fix recipe conflict.
             addBrewingRecipe(Items.PHANTOM_MEMBRANE, Potions.AWKWARD, potionSleepwalk);
             addBrewingRecipe(Items.GLOWSTONE_DUST, potionSleepwalk, potionStrongSleepwalk);
             addBrewingRecipe(Items.GLOWSTONE_DUST, potionStrongSleepwalk, potionStrongestSleepwalk);
