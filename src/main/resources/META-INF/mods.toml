@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[39,)"
+
+license="MIT License"
+
+[[mods]]
+modId="sleepwalk"
+version="${file.jarVersion}"
+displayName="Sleepwalk"
+authors="Korti11"
+description=''''''
+
+[[dependencies.sleepwalk]]
+    modId="forge"
+    mandatory=true
+    versionRange="[39,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.sleepwalk]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.1,)"
+    ordering="NONE"
+    side="BOTH"
